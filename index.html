@@ -52,12 +52,114 @@
 <div class="toast" id="toast"></div>
 <script>
 const defaultProducts=[
-  {"id":1,"name":"Ruban Dymo LetraTag 12mm - 4 couleurs","ar":"شريط لاصق ديمو 12ملم","category":"tech","price":50,"old":0,"tag":"new","desc":"12mm • Autocollant","longDesc":"Ruban original Dymo LetraTag 12mm x 4m.","arDesc":"12ملم • لاصق قوي","img":"https://i.postimg.cc/YSY30CSb/etiquette-dymo.jpg","images":["https://i.postimg.cc/YSY30CSb/etiquette-dymo.jpg"],"popular":true,"stock":100},
-  {"id":2,"name":"Écouteurs sans fil","ar":"سماعات لاسلكية","category":"audio","price":299,"old":399,"tag":"popular","desc":"Son clair","longDesc":"Écouteurs Bluetooth 5.3. 30h.","arDesc":"صوت واضح","img":"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=600&q=80","images":["https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=600&q=80"],"popular":true,"stock":12},
-  {"id":3,"name":"Montre connectée","ar":"ساعة ذكية","category":"style","price":449,"old":599,"tag":"promo","desc":"Suivi quotidien","longDesc":"Montre étanche sport.","arDesc":"مقاومة للماء","img":"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80","images":["https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"],"popular":true,"stock":5},
-  {"id":4,"name":"DVR UNV 2MP 8 Canaux - 350 DH","ar":"جهاز تسجيل UNV 8 قنوات 2MP","category":"tech","price":350,"old":550,"tag":"promo","desc":"8 CH • 2MP • App mobile","longDesc":"Uniview UNV 8CH 2MP DVR - Full HD 1080P pour 8 caméras. Visualisation à distance sur téléphone. Plug & Play.","arDesc":"تسجيل 8 كاميرات • مشاهدة على الهاتف","img":"https://i.postimg.cc/YSY30CSb/etiquette-dymo.jpg","images":["https://i.postimg.cc/YSY30CSb/etiquette-dymo.jpg"],"popular":true,"stock":8},
-  {"id":5,"name":"Sac à dos urbain","ar":"حقيبة ظهر عصرية","category":"style","price":229,"old":279,"tag":"promo","desc":"Pour le travail","longDesc":"Sac à dos imperméable avec port USB.","arDesc":"مقاوم للماء","img":"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80","images":["https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"],"popular":false,"stock":20},
-  {"id":6,"name":"Lampe de bureau","ar":"مصباح مكتب","category":"home","price":159,"old":0,"tag":"popular","desc":"Éclairage doux","longDesc":"Lampe LED tactile 3 intensités.","arDesc":"إضاءة مريحة","img":"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80","images":["https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80"],"popular":true,"stock":6}
+  {
+    "id": 1,
+    "name": "Ruban Dymo LetraTag 12mm - 4 couleurs",
+    "ar": "شريط لاصق ديمو 12ملم",
+    "category": "tech",
+    "price": 50,
+    "old": 0,
+    "tag": "new",
+    "desc": "12mm • Autocollant",
+    "longDesc": "Ruban original Dymo LetraTag 12mm x 4m.",
+    "arDesc": "12ملم • لاصق قوي",
+    "img": "https://i.postimg.cc/YSY30CSb/etiquette-dymo.jpg",
+    "images": [
+      "https://i.postimg.cc/YSY30CSb/etiquette-dymo.jpg"
+    ],
+    "popular": true,
+    "stock": 99
+  },
+  {
+    "id": 2,
+    "name": "Écouteurs sans fil",
+    "ar": "سماعات لاسلكية",
+    "category": "audio",
+    "price": 299,
+    "old": 399,
+    "tag": "popular",
+    "desc": "Son clair",
+    "longDesc": "Écouteurs Bluetooth 5.3. 30h.",
+    "arDesc": "صوت واضح",
+    "img": "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=600&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=600&q=80"
+    ],
+    "popular": true,
+    "stock": 12
+  },
+  {
+    "id": 3,
+    "name": "Montre connectée",
+    "ar": "ساعة ذكية",
+    "category": "style",
+    "price": 449,
+    "old": 599,
+    "tag": "promo",
+    "desc": "Suivi quotidien",
+    "longDesc": "Montre étanche sport.",
+    "arDesc": "مقاومة للماء",
+    "img": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"
+    ],
+    "popular": true,
+    "stock": 11
+  },
+  {
+    "id": 4,
+    "name": "DVR UNV 2MP 8 Canaux - 350 DH",
+    "ar": "جهاز تسجيل UNV 8 قنوات 2MP",
+    "category": "tech",
+    "price": 350,
+    "old": 550,
+    "tag": "promo",
+    "desc": "8 CH • 2MP • App mobile",
+    "longDesc": "Uniview UNV 8CH 2MP DVR - Full HD 1080P pour 8 caméras. Visualisation à distance sur téléphone. Plug & Play.",
+    "arDesc": "تسجيل 8 كاميرات • مشاهدة على الهاتف",
+    "img": "https://i.postimg.cc/YSY30CSb/etiquette-dymo.jpg",
+    "images": [
+      "https://i.postimg.cc/YSY30CSb/etiquette-dymo.jpg"
+    ],
+    "popular": true,
+    "stock": 8
+  },
+  {
+    "id": 5,
+    "name": "Sac à dos urbain",
+    "ar": "حقيبة ظهر عصرية",
+    "category": "style",
+    "price": 229,
+    "old": 279,
+    "tag": "promo",
+    "desc": "Pour le travail",
+    "longDesc": "Sac à dos imperméable avec port USB.",
+    "arDesc": "مقاوم للماء",
+    "img": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"
+    ],
+    "popular": false,
+    "stock": 20
+  },
+  {
+    "id": 6,
+    "name": "Lampe de bureau",
+    "ar": "مصباح مكتب",
+    "category": "home",
+    "price": 159,
+    "old": 0,
+    "tag": "popular",
+    "desc": "Éclairage doux",
+    "longDesc": "Lampe LED tactile 3 intensités.",
+    "arDesc": "إضاءة مريحة",
+    "img": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80"
+    ],
+    "popular": true,
+    "stock": 6
+  }
 ];
 const cities72=["Agadir","Ahfir","Ait Melloul","Aït Iaaza","Akka","Al Hoceima","Anzi","Assa","Autre","Azrou","Ben Guerir","Beni Mellal","Berkane","Berrechid","Biougra","Bouarfa","Bouizakarne","Boujdour","Boulemane","Boumalne Dades","Casablanca","Chefchaouen","Dakhla","Dar Gueddari","El Jadida","Errachidia","Essaouira","Fam El Hisn","Fès","Figuig","Fnideq","Foum Zguid","Goulmima","Guelmim","Guercif","Had Kourt","Ifrane","Igherm","Inezgane","Jerada","Jorf El Melha","Kalaat Mghouna","Kénitra","Khénifra","Khouribga","Ksar El Kebir","Laayoune","Lakhsas","Lalla Mimouna","Larache","Mdiq","Mechra Bel Ksiri","Meknès","Midelt","Missour","Mohammedia","Nador","Ouarzazate","Ouazzane","Ouezzane","Oujda","Oulad Berhil","Oulad Teima","Outat El Haj","Rabat","Rich","Safi","Saïdia","Salé","Settat","Sidi Ifni","Sidi Kacem","Sidi Slimane","Smara","Souk El Arbaa","Tafraout","Tanger","Tan-Tan","Taounate","Taourirt","Tarfaya","Taroudant","Tata","Taza","Témara","Tétouan","Tinghir","Tiznit","Youssoufia","Zagora"].sort((a,b)=>a.localeCompare(b,'fr'));
 const deliveryFees={};cities72.forEach(c=>{if(["Casablanca","Mohammedia"].includes(c)) deliveryFees[c]=20; else if(["Rabat","Salé","Témara","Kénitra","Agadir","Inezgane","Ait Melloul"].includes(c)) deliveryFees[c]=25; else if(c==="Autre") deliveryFees[c]=50; else deliveryFees[c]=35;});
