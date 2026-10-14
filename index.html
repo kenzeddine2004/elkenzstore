@@ -1,20 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EL KENZ STORE - Boutique en ligne Maroc</title>
+<style>
+:root{--ink:#111820;--gold:#e8b84e;--gold2:#ffd477;--muted:#69717c;--line:#e7e9ed}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff}button,input,textarea,select{font:inherit}button{cursor:pointer}
 .wrap{width:min(1180px,92%);margin:auto}
 .topbar{background:var(--ink);color:#f4f5f6;font-size:12px}
 .topbar .wrap{display:flex;justify-content:space-between;gap:12px;padding:10px 0;flex-wrap:wrap}
 .head{padding:17px 0;border-bottom:1px solid var(--line)}
 .head .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap}
-.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:950;font-size:26px;white-space:nowrap;flex-shrink:0}
+  .logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:950;font-size:26px;white-space:nowrap;flex-shrink:0}
 .logo small{display:block;color:#c18d1d;font-size:10px;letter-spacing:5px;text-align:center;margin-top:-5px}
 .search{display:flex;flex:1;max-width:550px;border:1px solid #dce0e5;border-radius:9px;overflow:hidden}
 .search input{border:0;outline:0;padding:13px 15px;min-width:0;flex:1}
 .search button{border:0;background:var(--ink);color:white;padding:0 17px}
-.cart-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:18px}
-.cart-body{flex:1;overflow:auto;padding:14px;display:grid;gap:12px;align-content:start}
-.cart-item{display:flex;gap:12px;border:1px solid var(--line);border-radius:12px;padding:10px}
-.cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px;background:#f3f3f3}
-.cart-item-info{flex:1}
-.cart-item-info b{font-size:13px;display:block;margin-bottom:4px}
-.cart-item-info small{font-size:11px;color:var(--muted)}
+.head-actions{display:flex;gap:14px;margin-left:auto;flex-shrink:0}
+.iconbtn{background:white;border:0;color:var(--ink);font-size:13px;display:grid;gap:2px;justify-items:center;white-space:nowrap}
+.iconbtn b{font-size:22px}
+.nav{background:var(--ink);color:white}
+.nav .wrap{display:flex;align-items:center;gap:26px;min-height:46px;overflow:auto}
+.nav a{color:white;text-decoration:none;font-size:13px;white-space:nowrap}
+.nav a.active{color:var(--gold);border-bottom:2px solid var(--gold);padding:15px 0}
+.hero{background:radial-gradient(ellipse at 70% 50%,#30353a 0%,#101418 50%,#050708 100%);color:white;overflow:hidden}
+.hero-inner{min-height:360px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:20px;padding:36px 0}
+  .eyebrow{color:var(--gold);letter-spacing:4px;font-size:13px;font-weight:700}
+.hero h1{font-size:clamp(32px,4vw,49px);line-height:1.1;margin:14px 0}
+.hero h1 span{color:var(--gold2)}
+.hero p{color:#e0e2e4;line-height:1.6}
+.primary{background:linear-gradient(90deg,var(--gold),var(--gold2));border:0;border-radius:99px;padding:13px 23px;font-weight:800;color:#15191d;display:inline-block;text-decoration:none}
+.hero-image{width:100%;height:310px;object-fit:cover;border-radius:16px}
+.section{padding:31px 0}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.cat{border:1px solid #edf0f2;background:#f8f9fa;border-radius:12px;text-align:center;padding:17px 8px}
+.cat.selected{border-color:var(--gold);background:#fff9eb}
+.cat .emoji{font-size:30px;display:block;margin-bottom:8px}
+.cat strong{font-size:12px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{border:1px solid var(--line);border-radius:99px;background:white;padding:8px 13px;color:#343a40;font-size:12px}
+.filter.active{background:var(--ink);color:white}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.product{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:white;position:relative;cursor:pointer;transition:.2s}
+  .product:hover{transform:translateY(-3px);box-shadow:0 10px 25px #0001}
+.product img{width:100%;height:190px;object-fit:cover;background:#f2f3f5}
+.tag{position:absolute;top:11px;left:11px;background:#0e9c51;color:white;font-size:10px;font-weight:800;padding:5px 8px;border-radius:5px}
+.tag.promo{background:#ed8c19}
+.pbody{padding:13px}
+.pname{font-size:14px;font-weight:750;margin:0 0 8px}
+.desc{font-size:11px;color:var(--muted);min-height:30px}
+.price-row{display:flex;align-items:center;gap:8px;margin:10px 0}
+.price{font-weight:850;font-size:16px}
+.old{font-size:11px;color:#8d949c;text-decoration:line-through}
+.pfoot{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.add{background:var(--ink);color:white;border:0;border-radius:8px;width:38px;height:36px;font-size:20px}
+.footer{background:#101820;color:#f5f6f7;padding:35px 0 20px;margin-top:28px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+.footer p,.footer a{font-size:13px;color:#c1c8ce;line-height:1.8;text-decoration:none}
+.footline{border-top:1px solid #343b42;margin-top:25px;padding-top:17px;font-size:11px;color:#aab2b9;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.whatsapp{position:fixed;bottom:18px;right:18px;z-index:5;background:#12a85b;color:white;border-radius:99px;padding:13px 18px;font-weight:800;text-decoration:none}
+  .cart-item-info small{font-size:11px;color:var(--muted)}
 .qty{display:flex;align-items:center;gap:8px;margin-top:6px}
 .qty button{width:26px;height:26px;border:1px solid var(--line);background:white;border-radius:6px}
 .qty span{font-size:13px;font-weight:700;min-width:16px;text-align:center}
@@ -30,7 +74,7 @@
 .form-body{padding:20px;display:grid;gap:14px}
 .form-body label{font-size:12px;font-weight:700;color:#333;display:grid;gap:6px}
 .form-body input,.form-body select,.form-body textarea{border:1px solid #dce0e5;border-radius:10px;padding:12px 14px;font-size:14px;outline:0}
-.form-body input:focus,.form-body select:focus{border-color:var(--gold)}
+  .form-body input:focus,.form-body select:focus{border-color:var(--gold)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form-note{background:#f7f8fa;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:12px;color:var(--muted);line-height:1.5}
 .pd-overlay{position:fixed;inset:0;background:#0008;z-index:60;display:none;opacity:0;transition:.3s}.pd-overlay.open{display:block;opacity:1}
@@ -47,219 +91,116 @@
 .pd-info h2{margin:0;font-size:22px}
 .desc-long{font-size:14px;color:var(--muted);line-height:1.7}
 .pd-price{font-size:22px;font-weight:900}
-.pd-actions{display:flex;gap:10px;margin-top:10px}
-.pd-actions button{flex:1}
-.delivery-box{background:#fff8e8;border:1px solid #f7e6bc;border-radius:12px;padding:14px;font-size:13px;line-height:1.7}
-@media(max-width:850px){.head.wrap{flex-wrap:wrap}.search{order:3;max-width:none;flex-basis:100%}.hero-inner{grid-template-columns:1fr}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.form-row{grid-template-columns:1fr}.pd-body{grid-template-columns:1fr}}
-</style></head>
+  .pd-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.pd-actions .add-large{flex:1;min-width:160px;background:var(--ink);color:white;border:0;border-radius:99px;padding:14px 18px;font-weight:800}
+.pd-actions .wa-large{flex:1;min-width:160px;background:#12a85b;color:white;border:0;border-radius:99px;padding:14px 18px;font-weight:800}
+.pd-specs{border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:8px}
+.pd-specs b{font-size:12px}
+.pd-specs span{font-size:12px;color:var(--muted)}
+.spec-row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #eee;padding:6px 0}
+.spec-row:last-child{border:0}
+@media (max-width:1000px){.products{grid-template-columns:repeat(3,1fr)}.categories{grid-template-columns:repeat(4,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.pd-body{grid-template-columns:1fr}}
+@media (max-width:680px){
+  .topbar{display:none}
+  .head-row{flex-wrap:wrap;gap:12px}
+  .search{order:3;flex-basis:100%;max-width:100%}
+  .hero-inner{grid-template-columns:1fr;min-height:auto;padding:22px 0}
+  .hero-image{height:220px;order:-1}
+  .products{grid-template-columns:repeat(2,1fr)}
+  .categories{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .footline{flex-direction:column}
+}
+</style>
+</head>
 <body>
-<div class="topbar"><div class="wrap"><span>🚚 Livraison partout au Maroc</span><span>💳 Paiement à la livraison</span><span>🎧 Support 7j/7</span><span><button id="lang" style="background:none;border:0;color:white;font-weight:800">FR | العربية</button></span></div></div>
-<header class="head"><div class="wrap"><a class="logo" href="#"><span>🛒</span><span>EL KENZ<small>STORE</small></span></a><form class="search" id="searchForm"><input id="searchInput" placeholder="Rechercher un produit..."><button>⌕</button></form><div class="head-actions"><button class="iconbtn" onclick="openCart()"><b>🛒<i class="cart-count" id="cartCount">0</i></b><span>Panier</span></button></div></div></header>
-<nav class="nav"><div class="wrap"><a class="active" href="#home">Accueil</a><a href="#products">Nos produits</a><a href="#promos">Promotions</a><a href="#about">À propos</a><a href="#contact">Contact</a></div></nav>
-<main><section class="hero" id="home"><div class="wrap hero-inner"><div><div class="eyebrow">EL KENZ STORE</div><h1>Votre boutique en ligne au <span>meilleur prix!</span></h1><p>Électronique • Accessoires • Maison • Mode • Et bien plus...</p><a class="primary" href="#products" style="display:inline-block;text-decoration:none">Découvrir nos produits →</a></div><img class="hero-image" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85"></div></section>
-<section class="section"><div class="wrap"><div class="categories" id="categories"><button class="cat selected" data-category="all"><span class="emoji">✨</span><strong>Tout voir</strong></button><button class="cat" data-category="tech"><span class="emoji">📱</span><strong>Électronique</strong></button><button class="cat" data-category="audio"><span class="emoji">🎧</span><strong>Audio</strong></button><button class="cat" data-category="home"><span class="emoji">🏠</span><strong>Maison</strong></button><button class="cat" data-category="style"><span class="emoji">⌚</span><strong>Mode</strong></button><button class="cat" data-category="gaming"><span class="emoji">🎮</span><strong>Gaming</strong></button></div></div></section>
-<section class="section" id="products" style="background:#f7f8fa"><div class="wrap"><div class="section-head" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div><h2 style="margin:0">Nos produits populaires</h2></div><div class="filters"><button class="filter active" data-filter="all">Tous</button><button class="filter" data-filter="popular">Populaires</button><button class="filter" data-filter="promo">Promotions</button></div></div><div class="products" id="productGrid"></div></div></section>
-</main>
-<footer class="footer" id="contact"><div class="wrap"><div class="footer-grid"><div><a class="logo" href="#" style="color:white"><span>🛒</span><span>EL KENZ<small>STORE</small></span></a><p>Votre prochaine bonne trouvaille commence ici.</p></div><div><h3>Liens utiles</h3><p><a href="#products">Nos produits</a><br><a href="#promos">Promotions</a></p></div><div><h3>Contactez-nous</h3><p>WhatsApp : 0602 01 77 94<br>Maroc - Livraison partout</p></div></div><div class="footline"><span>© <span id="year"></span> EL KENZ STORE.</span></div></div></footer>
-<a class="whatsapp" href="https://wa.me/212602017794" target="_blank">◉ WhatsApp</a>
-<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cart-head"><span id="cartTitle">Votre Panier (0)</span><button onclick="closeCart()" style="border:0;background:none;font-size:22px">×</button></div>
-  <div class="cart-body" id="cartBody"><div class="empty">Votre panier est vide.</div></div>
-  <div class="cart-foot" id="cartFoot" style="display:none">
-    <div class="total-row"><span>Total produits</span><span id="cartTotal">0 DH</span></div>
-    <button class="btn-wa" onclick="openForm()">Commander maintenant →</button>
-    <button class="btn-continue" onclick="closeCart()">Continuer vos achats</button>
+<div class="topbar"><div class="wrap">📦 توصيل مجاني ابتداءً من 400 د.م  &nbsp;|&nbsp;  📞 خدمة العملاء: 06 12 34 56 78 &nbsp;|&nbsp;  🇲🇦 توصيل لجميع مدن المغرب</div></div>
+<header>
+  <div class="wrap head-row">
+    <a class="logo" href="#"><span>🛠️</span><span>BRICOMA<small>BRICOLAGE</small></span></a>
+    <div class="search"><input id="searchInput" placeholder="ابحث عن منتج، علامة، فئة..."><button>🔍</button></div>
+    <div class="head-actions">
+      <button class="iconbtn" onclick="toast('قريبا: حسابي')">👤<span>حسابي</span></button>
+      <button class="iconbtn" onclick="openCart()">🛒<span>السلة <span id="cartCount" class="cart-count">0</span></span></button>
+    </div>
   </div>
-</div>
-<div class="form-overlay" id="formOverlay" onclick="closeForm()"></div>
-<div class="form-drawer" id="formDrawer">
-  <div class="form-head"><span>Finaliser votre commande</span><button onclick="closeForm()" style="border:0;background:none;font-size:22px">×</button></div>
-  <form class="form-body" id="orderForm" onsubmit="submitOrder(event)">
-    <div class="form-note">📦 Livraison partout au Maroc - Paiement à la livraison</div>
-    <div class="form-row">
-      <label>Nom *<input type="text" id="fNom" required></label>
-      <label>Prénom *<input type="text" id="fPrenom" required></label>
-    </div>
-    <label>Téléphone *<input type="tel" id="fTel" required placeholder="06..."></label>
-    <label>Ville *<select id="fVille" required onchange="updateDelivery()">
-<option value="">Choisir votre ville</option>
-<option value="Casablanca">Casablanca - 20 DH</option>
-<option value="Mohammedia">Mohammedia - 25 DH</option>
-<option value="Agadir">Agadir - 25 DH</option>
-<option value="Ain Harrouda">Ain Harrouda - 30 DH</option>
-<option value="Bouskoura">Bouskoura - 30 DH</option>
-<option value="Berrechid">Berrechid - 30 DH</option>
-<option value="Dar Bouazza">Dar Bouazza - 30 DH</option>
-<option value="Rabat">Rabat - 35 DH</option>
-<option value="Salé">Salé - 35 DH</option>
-<option value="Témara">Témara - 35 DH</option>
-<option value="Kénitra">Kénitra - 35 DH</option>
-<option value="Skhirat">Skhirat - 35 DH</option>
-<option value="Marrakech">Marrakech - 35 DH</option>
-<option value="Fès">Fès - 35 DH</option>
-<option value="Meknès">Meknès - 35 DH</option>
-<option value="Tanger">Tanger - 35 DH</option>
-<option value="Tétouan">Tétouan - 35 DH</option>
-<option value="El Jadida">El Jadida - 35 DH</option>
-<option value="Settat">Settat - 35 DH</option>
-<option value="Essaouira">Essaouira - 35 DH</option>
-<option value="Larache">Larache - 35 DH</option>
-<option value="Ksar El Kebir">Ksar El Kebir - 35 DH</option>
-<option value="Chefchaouen">Chefchaouen - 35 DH</option>
-<option value="Al Hoceima">Al Hoceima - 35 DH</option>
-<option value="El Kelaa des Sraghna">El Kelaa des Sraghna - 35 DH</option>
-<option value="Sidi Kacem">Sidi Kacem - 35 DH</option>
-<option value="Sidi Slimane">Sidi Slimane - 35 DH</option>
-<option value="Khémisset">Khémisset - 35 DH</option>
-<option value="Ifrane">Ifrane - 35 DH</option>
-<option value="Azrou">Azrou - 35 DH</option>
-<option value="Oujda">Oujda - 35 DH</option>
-<option value="Nador">Nador - 35 DH</option>
-<option value="Berkane">Berkane - 40 DH</option>
-<option value="Taourirt">Taourirt - 40 DH</option>
-<option value="Guercif">Guercif - 40 DH</option>
-<option value="Taza">Taza - 40 DH</option>
-<option value="Midelt">Midelt - 40 DH</option>
-<option value="Beni Mellal">Beni Mellal - 40 DH</option>
-<option value="Khouribga">Khouribga - 40 DH</option>
-<option value="Safi">Safi - 40 DH</option>
-<option value="Youssoufia">Youssoufia - 40 DH</option>
-<option value="Benguerir">Benguerir - 40 DH</option>
-<option value="Oued Zem">Oued Zem - 40 DH</option>
-<option value="Fkih Ben Salah">Fkih Ben Salah - 40 DH</option>
-<option value="Souk El Arbaa">Souk El Arbaa - 40 DH</option>
-<option value="Sidi Bennour">Sidi Bennour - 40 DH</option>
-<option value="Azilal">Azilal - 40 DH</option>
-<option value="Taounate">Taounate - 40 DH</option>
-<option value="Sefrou">Sefrou - 40 DH</option>
-<option value="Ouazzane">Ouazzane - 40 DH</option>
-<option value="Ouarzazate">Ouarzazate - 45 DH</option>
-<option value="Errachidia">Errachidia - 45 DH</option>
-<option value="Zagora">Zagora - 45 DH</option>
-<option value="Tinghir">Tinghir - 45 DH</option>
-<option value="Guelmim">Guelmim - 45 DH</option>
-<option value="Tan-Tan">Tan-Tan - 45 DH</option>
-<option value="Taroudant">Taroudant - 45 DH</option>
-<option value="Tiznit">Tiznit - 45 DH</option>
-<option value="Inezgane">Inezgane - 45 DH</option>
-<option value="Dakhla">Dakhla - 45 DH</option>
-<option value="Laayoune">Laayoune - 45 DH</option>
-<option value="Boujdour">Boujdour - 45 DH</option>
-<option value="Smara">Smara - 45 DH</option>
-<option value="Bouarfa">Bouarfa - 45 DH</option>
-<option value="Figuig">Figuig - 45 DH</option>
-<option value="Aousserd">Aousserd - 45 DH</option>
-<option value="Assa-Zag">Assa-Zag - 45 DH</option>
-<option value="Autre">Autre ville - 45 DH</option>
-</select></label>
-    <label>Adresse complète *<textarea id="fAdresse" required rows="2" placeholder="Quartier, rue, N°..."></textarea></label>
-    <label>Note (optionnel)<textarea id="fNote" rows="2" placeholder="Couleur, taille..."></textarea></label>
-    <div class="delivery-box" id="deliveryBox">
-      <div style="display:flex;justify-content:space-between"><span>Produits:</span><b id="dProducts">0 DH</b></div>
-      <div style="display:flex;justify-content:space-between"><span>Livraison (<span id="dCity">-</span>):</span><b id="dFee">0 DH</b></div>
-      <div style="border-top:1px dashed #e7c88a;margin:8px 0"></div>
-      <div style="display:flex;justify-content:space-between;font-size:16px"><span><b>TOTAL À PAYER:</b></span><b id="formTotal">0 DH</b></div>
-      <div style="font-size:11px;color:#8a7a5a;margin-top:6px" id="formResume">0 produit(s)</div>
-    </div>
-    <button type="submit" class="btn-wa" style="padding:16px;font-size:16px">✅ Confirmer sur WhatsApp</button>
-  </form>
-</div>
-<div class="pd-overlay" id="pdOverlay" onclick="closeProduct()"></div>
-<div class="pd-drawer" id="pdDrawer">
-  <div class="pd-head"><span id="pdTitle">Détail produit</span><button onclick="closeProduct()" style="border:0;background:none;font-size:22px">×</button></div>
-  <div class="pd-body" id="pdBody"></div>
-</div>
-<div class="toast" id="toast"></div>
+</header>
+<div class="nav"><div class="wrap">
+  <a class="active" href="#">الرئيسية</a><a href="#">الأدوات</a><a href="#">السباكة</a><a href="#">الكهرباء</a><a href="#">الدهانات</a><a href="#">الحديقة</a><a href="#">عروض</a>
+</div></div>
+
+<div class="hero"><div class="wrap hero-inner">
+  <div><div class="eyebrow">مجموعة احترافية</div><h1>كل ما تحتاجه <span>لبناء وتجديد</span> منزلك</h1><p>أكثر من 15,000 منتج بجودة عالية وأسعار تنافسية. توصيل سريع لجميع المدن المغربية مع ضمان الجودة.</p><br><a class="primary" href="#products">تسوق الآن ←</a></div>
+  <img class="hero-image" src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800" alt="">
+</div></div>
+
+<div class="section"><div class="wrap"><h3 style="margin:0 0 14px">تسوق حسب الفئة</h3><div class="categories" id="categories"></div></div></div>
+
+<div class="section" style="padding-top:0"><div class="wrap">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px"><h3 id="products" style="margin:0">منتجاتنا</h3><div class="filters" id="filters"></div></div>
+  <div class="products" id="productsGrid"></div>
+</div></div>
+
+<footer class="footer"><div class="wrap"><div class="footer-grid"><div><b>BRICOMA</b><p>متجرك الأول لمواد البناء والأدوات في المغرب. جودة، ثمن مناسب، وتوصيل لجميع المدن.</p></div><div><b>روابط</b><br><a href="#">من نحن</a><br><a href="#">التوصيل</a><br><a href="#">الإرجاع</a></div><div><b>تواصل</b><br><a href="#">06 12 34 56 78</a><br><a href="#">contact@bricoma.ma</a></div></div><div class="footline"><span>© 2026 BRICOMA.ma - جميع الحقوق محفوظة</span><span>الدفع: عند الاستلام • تحويل بنكي • MoPay</span></div></div></footer>
+
+<!-- CART -->
+<div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
+<div id="cartDrawer" class="cart-drawer"><div class="cart-head"><span>سلة التسوق (<span id="cartCount2">0</span>)</span><button onclick="closeCart()" style="border:0;background:white;font-size:22px">✕</button></div><div id="cartBody" class="cart-body"></div><div class="cart-foot"><div class="total-row"><span>المجموع:</span><span id="cartTotal">0 د.م</span></div><button class="btn-wa" onclick="openOrderForm()">إتمام الطلب عبر واتساب ✓</button><button class="btn-continue" onclick="closeCart()">متابعة التسوق</button></div></div>
+
+<!-- ORDER FORM -->
+<div id="formOverlay" class="form-overlay" onclick="closeOrderForm()"></div>
+<div id="formDrawer" class="form-drawer"><div class="form-head"><span>معلومات التوصيل</span><button onclick="closeOrderForm()" style="border:0;background:white;font-size:22px">✕</button></div><div class="form-body">
+  <div class="form-row"><label>الاسم الكامل*<input id="fName" placeholder="محمد العلوي"></label><label>رقم الهاتف* (واتساب)<input id="fPhone" placeholder="06 12 34 56 78"></label></div>
+  <div class="form-row"><label>المدينة*<select id="fCity"><option value="">اختر المدينة</option><option>الدار البيضاء</option><option>الرباط</option><option>مراكش</option><option>فاس</option><option>طنجة</option><option>أكادير</option><option>وجدة</option><option>مكناس</option><option>تطوان</option><option>القنيطرة</option><option>آسفي</option><option>أخرى</option></select></label><label>العنوان الكامل<input id="fAddr" placeholder="الحي، الشارع، رقم المنزل"></label></div>
+  <label>ملاحظات (اختياري)<textarea id="fNote" rows="3" placeholder="مثال: الطابق الثاني، قرب..."></textarea></label>
+  <div class="form-note">✅ سيتم إرسال طلبك مباشرة إلى واتساب المتجر. سيتواصل معك فريقنا لتأكيد الطلب والثمن النهائي مع التوصيل.<br>💰 الدفع عند الاستلام متاح.</div>
+  <button class="btn-wa" onclick="sendWhatsAppOrder()">إرسال الطلب عبر واتساب 📲</button>
+</div></div>
+
+<!-- PRODUCT DETAIL -->
+<div id="pdOverlay" class="pd-overlay" onclick="closePD()"></div>
+<div id="pdDrawer" class="pd-drawer"><div class="pd-head"><span id="pdTitle">تفاصيل المنتج</span><button onclick="closePD()" style="border:0;background:white;font-size:22px">✕</button></div><div class="pd-body"><div class="pd-gallery"><img id="pdMain" class="pd-main" src=""><div id="pdThumbs" class="pd-thumbs"></div></div><div class="pd-info"><h2 id="pdName"></h2><div id="pdPrice" class="pd-price"></div><div id="pdDesc" class="desc-long"></div><div class="pd-actions"><button class="add-large" onclick="addCurrentToCart()">أضف للسلة +</button><button class="wa-large" onclick="orderCurrentViaWA()">اطلب عبر واتساب</button></div><div class="pd-specs" id="pdSpecs"></div></div></div></div>
+
+<div id="toast" class="toast"></div>
+<a class="whatsapp" href="#" onclick="openCart();return false">💬 السلة</a>
+
 <script>
-const deliveryFees = {
-  "Casablanca": 20, "Mohammedia": 25, "Agadir": 25,
-  "Ain Harrouda": 30, "Bouskoura": 30, "Berrechid": 30, "Dar Bouazza": 30,
-  "Rabat": 35, "Salé": 35, "Témara": 35, "Kénitra": 35, "Skhirat": 35, "Marrakech": 35, "Fès": 35, "Meknès": 35, "Tanger": 35, "Tétouan": 35, "El Jadida": 35, "Settat": 35, "Essaouira": 35, "Larache": 35, "Ksar El Kebir": 35, "Chefchaouen": 35, "Al Hoceima": 35, "El Kelaa des Sraghna": 35, "Sidi Kacem": 35, "Sidi Slimane": 35, "Khémisset": 35, "Ifrane": 35, "Azrou": 35, "Oujda": 35, "Nador": 35,
-  "Berkane": 40, "Taourirt": 40, "Guercif": 40, "Taza": 40, "Midelt": 40, "Beni Mellal": 40, "Khouribga": 40, "Safi": 40, "Youssoufia": 40, "Benguerir": 40, "Oued Zem": 40, "Fkih Ben Salah": 40, "Souk El Arbaa": 40, "Sidi Bennour": 40, "Azilal": 40, "Taounate": 40, "Sefrou": 40, "Ouazzane": 40,
-  "Ouarzazate": 45, "Errachidia": 45, "Zagora": 45, "Tinghir": 45, "Guelmim": 45, "Tan-Tan": 45, "Taroudant": 45, "Tiznit": 45, "Inezgane": 45, "Dakhla": 45, "Laayoune": 45, "Boujdour": 45, "Smara": 45, "Bouarfa": 45, "Figuig": 45, "Aousserd": 45, "Assa-Zag": 45, "Autre": 45
-};
-const products=[
-{id:1,name:'Ruban Dymo LetraTag 12mm - 4 couleurs',ar:'شريط لاصق ديمو 12ملم',category:'tech',price:50,old:70,tag:'promo',desc:'12mm • Autocollant',longDesc:'Ruban original Dymo LetraTag 12mm x 4m. Compatible LetraTag. Qualité premium, colle forte.',arDesc:'12ملم • لاصق',img:'https://i.postimg.cc/YSY30CSb/etiquette-dymo.jpg',images:['https://i.postimg.cc/YSY30CSb/etiquette-dymo.jpg','https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80'],popular:true},
-{id:2,name:'Écouteurs sans fil',ar:'سماعات لاسلكية',category:'audio',price:299,old:399,tag:'popular',desc:'Son clair • Boîtier compact',longDesc:'Écouteurs Bluetooth 5.3. Autonomie 30h avec boîtier. Son puissant et basses profondes.',arDesc:'صوت واضح',img:'https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=600&q=80',images:['https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=600&q=80'],popular:true},
-{id:3,name:'Montre connectée',ar:'ساعة ذكية',category:'style',price:449,old:599,tag:'promo',desc:'Suivi quotidien',longDesc:'Montre connectée étanche avec suivi sport et notifications WhatsApp. Compatible Android et iPhone.',arDesc:'متابعة يومية',img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80',images:['https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1508685096489-7aacd43bd3b2?auto=format&fit=crop&w=600&q=80'],popular:true},
-{id:4,name:'Enceinte portable',ar:'مكبر صوت محمول',category:'audio',price:349,old:0,tag:'popular',desc:'Format pratique',longDesc:'Enceinte Bluetooth puissante 12h autonomie. Son 360° étanche IPX5.',arDesc:'حجم عملي',img:'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80',images:['https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1512446816048-9dc9f94e4ff3?auto=format&fit=crop&w=600&q=80'],popular:true},
-{id:5,name:'Sac à dos urbain',ar:'حقيبة ظهر عصرية',category:'style',price:229,old:279,tag:'promo',desc:'Pour le travail',longDesc:'Sac à dos imperméable avec port USB et compartiment laptop 15.6".',arDesc:'للعمل',img:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80',images:['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1581605405669-fcdf81165afa?auto=format&fit=crop&w=600&q=80'],popular:false},
-{id:6,name:'Lampe de bureau',ar:'مصباح مكتب',category:'home',price:159,old:0,tag:'popular',desc:'Éclairage doux',longDesc:'Lampe LED tactile 3 intensités avec port USB.',arDesc:'إضاءة مريحة',img:'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80',images:['https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80'],popular:true},
-{id:7,name:'Manette gaming',ar:'يد تحكم للألعاب',category:'gaming',price:399,old:499,tag:'promo',desc:'Confortable',longDesc:'Manette sans fil compatible PC PS4 Android. Batterie longue durée.',arDesc:'مريحة',img:'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=600&q=80',images:['https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1592840496694-26d035b52b48?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=600&q=80'],popular:false},
-{id:8,name:'Support téléphone',ar:'حامل الهاتف',category:'tech',price:79,old:0,tag:'popular',desc:'Compact',longDesc:'Support téléphone réglable aluminium pour bureau.',arDesc:'صغير',img:'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=600&q=80',images:['https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80','https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=600&q=80'],popular:false}
+const WA_NUMBER="212612345678";
+const PRODUCTS=[
+{id:1,name:"مثقاب كهربائي 750W BOSCH",cat:"الأدوات",price:899,old:1199,tag:"جديد",promo:false,desc:"مثقاب احترافي قوي مع علبة وحقيبة.",long:"مثقاب BOSCH الأصلي 750 واط، سرعتين، دوران عكسي، مناسب للحرفيين والاستعمال المنزلي. يأتي مع مجموعة ريش وحقيبة متينة.",img:"https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=600",imgs:["https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=800","https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800"],specs:[["الطاقة","750W"],["العلامة","BOSCH"],["الضمان","سنتين"]]},
+{id:2,name:"طقم مفاتيح 108 قطعة",cat:"الأدوات",price:549,old:0,tag:"",promo:true,desc:"طقم متكامل للميكانيك والمنزل.",long:"طقم 108 قطعة كروم فاناديوم، مقاوم للصدأ، علبة قوية بترتيب احترافي.",img:"https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600",imgs:["https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800"],specs:[["العدد","108"],["المادة","Cr-V"],["العلبة","مضمنة"]]},
+{id:3,name:"طلاء أبيض 10L - جودة عالية",cat:"الدهانات",price:329,old:399,tag:"",promo:true,desc:"تغطية ممتازة وبدون رائحة.",long:"طلاء مائي أبيض ناصع، يغطي 100م²، يجف بسرعة، قابل للغسل.",img:"https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600",imgs:["https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800"],specs:[["الحجم","10 لتر"],["التغطية","~100م²"],["النوع","مائي"]]},
+{id:4,name:"سلك كهربائي 2.5mm - 50m",cat:"الكهرباء",price:459,old:0,tag:"",promo:false,desc:"نحاس خالص معزول.",long:"سلك كهربائي 2.5 مم نحاس 100%، لفة 50 متر، معزول مزدوج.",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600",imgs:["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800"],specs:[["المقطع","2.5mm²"],["الطول","50m"],["النحاس","100%"]]},
+{id:5,name:"خلاط مطبخ عصري",cat:"السباكة",price:699,old:899,tag:"جديد",promo:false,desc:"ستانلس ستيل مع خرطوم مرن.",long:"خلاط مطبخ عالي الجودة، مقاوم للكلس، دوران 360°.",img:"https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600",imgs:["https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800"],specs:[["المادة","Inox"],["الدوران","360°"],["الضمان","5 سنوات"]]},
+{id:6,name:"آلة جز العشب 1500W",cat:"الحديقة",price:1299,old:1599,tag:"",promo:true,desc:"قوية وخفيفة مع كيس جمع.",long:"جزازة كهربائية 1500 واط، عرض قص 32 سم، 3 ارتفاعات.",img:"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600",imgs:["https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800"],specs:[["الطاقة","1500W"],["العرض","32cm"],["الكيس","35L"]]},
+{id:7,name:"أنبوب PPR 20mm - 4m",cat:"السباكة",price:35,old:0,tag:"",promo:false,desc:"للماء الساخن والبارد.",long:"أنبوب PPR ألماني 20 مم، يتحمل حرارة عالية وضغط.",img:"https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600",imgs:["https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=800"],specs:[["القطر","20mm"],["الطول","4m"],["الحرارة","95°C"]]},
+{id:8,name:"مصباح LED سقف 24W",cat:"الكهرباء",price:149,old:199,tag:"",promo:false,desc:"إضاءة بيضاء قوية موفرة.",long:"مصباح سقف LED 24 واط، إضاءة 2400 لومن، عمر 25000 ساعة.",img:"https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600",imgs:["https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800"],specs:[["الطاقة","24W"],["اللومن","2400lm"],["العمر","25000h"]]},
 ];
-let currentLang='fr',activeCategory='all',activeFilter='all',searchTerm=''; let cart=[]; let currentPdId=null;
-const money=n=>new Intl.NumberFormat('fr-MA').format(n)+' DH';
-function getCartProductsTotal(){ return cart.reduce((s,c)=>{ const p=products.find(x=>x.id===c.id); return s + p.price*c.qty; },0); }
-function getDeliveryFee(){ const v=document.getElementById('fVille').value; return deliveryFees[v]||0; }
-function updateDelivery(){
-  const prodTotal=getCartProductsTotal(); const fee=getDeliveryFee(); const ville=document.getElementById('fVille').value||'-';
-  document.getElementById('dProducts').textContent=money(prodTotal);
-  document.getElementById('dFee').textContent=fee?money(fee):'0 DH';
-  document.getElementById('dCity').textContent=ville;
-  document.getElementById('formTotal').textContent=money(prodTotal+fee);
-}
-function renderProducts(){
-  const grid=document.getElementById('productGrid'); const term=searchTerm.trim().toLowerCase();
-  let list=products.filter(p=>{
-    const catMatch=(activeCategory==='all'||p.category===activeCategory);
-    const filterMatch=(activeFilter==='all'||(activeFilter==='promo'?p.tag==='promo':p.popular));
-    if(!catMatch||!filterMatch) return false; if(!term) return true;
-    return (p.name+' '+p.ar+' '+p.desc).toLowerCase().includes(term);
-  });
-  grid.innerHTML=list.length?list.map(p=>`<article class="product" onclick="openProduct(${p.id})"><span class="tag ${p.tag==='promo'?'promo':''}">${p.tag==='promo'?'PROMO':'En stock'}</span><img src="${p.img}" alt="${p.name}"><div class="pbody"><h3 class="pname">${currentLang==='fr'?p.name:p.ar}</h3><div class="desc">${currentLang==='fr'?p.desc:p.arDesc}</div><div class="price-row"><span class="price">${money(p.price)}</span>${p.old?`<span class="old">${money(p.old)}</span>`:''}</div><div class="pfoot"><span style="font-size:11px;color:#69717c;font-weight:600">📦 En stock</span><button class="add" onclick="event.stopPropagation();addToCart(${p.id})">+</button></div></div></article>`).join(''):`<div class="empty">Aucun produit trouvé.</div>`;
-}
-function openProduct(id){
-  const p=products.find(x=>x.id===id); if(!p) return; currentPdId=id;
-  document.getElementById('pdTitle').textContent=currentLang==='fr'?p.name:p.ar;
-  document.getElementById('pdBody').innerHTML=`
-    <div class="pd-gallery">
-      <img id="pdMainImg" class="pd-main" src="${p.images[0]}">
-      <div class="pd-thumbs">${p.images.map((im,i)=>`<img class="pd-thumb ${i===0?'active':''}" src="${im}" onclick="switchImg(${i})">`).join('')}</div>
-    </div>
-    <div class="pd-info">
-      <h2>${currentLang==='fr'?p.name:p.ar}</h2>
-      <div class="price-row"><span class="pd-price">${money(p.price)}</span>${p.old?`<span class="old">${money(p.old)}</span>`:''}</div>
-      <span class="tag ${p.tag==='promo'?'promo':''}" style="position:static;display:inline-block;width:fit-content">${p.tag==='promo'?'PROMO':'En stock'}</span>
-      <p class="desc-long">${p.longDesc}</p>
-      <div class="delivery-box">✅ Paiement à la livraison<br>🚚 Livraison: 20-45 DH selon ville<br>⏱️ 24-48h partout au Maroc</div>
-      <div class="pd-actions"><button class="btn-wa" onclick="addToCart(${p.id});closeProduct();openCart()">Ajouter au panier</button><button class="btn-continue" onclick="addToCart(${p.id});openFormFromPd()">Commander</button></div>
-    </div>`;
-  document.getElementById('pdDrawer').classList.add('open'); document.getElementById('pdOverlay').classList.add('open'); document.body.style.overflow='hidden';
-}
-function switchImg(i){ document.getElementById('pdMainImg').src=products.find(x=>x.id===currentPdId).images[i]; document.querySelectorAll('.pd-thumb').forEach((t,idx)=>t.classList.toggle('active',idx===i)); }
-function closeProduct(){ document.getElementById('pdDrawer').classList.remove('open'); document.getElementById('pdOverlay').classList.remove('open'); document.body.style.overflow=''; }
-function openFormFromPd(){ closeProduct(); setTimeout(()=>openForm(),300); }
-function addToCart(id){ const ex=cart.find(c=>c.id===id); if(ex) ex.qty++; else cart.push({id,qty:1}); updateCart(); showToast('Ajouté au panier'); }
-function changeQty(id,d){ const item=cart.find(c=>c.id===id); if(!item) return; item.qty+=d; if(item.qty<=0) cart=cart.filter(c=>c.id!==id); updateCart(); }
-function updateCart(){
-  const count=cart.reduce((s,c)=>s+c.qty,0); const prodTotal=getCartProductsTotal();
-  document.getElementById('cartCount').textContent=count; document.getElementById('cartTitle').textContent=`Votre Panier (${count})`;
-  const body=document.getElementById('cartBody'); const foot=document.getElementById('cartFoot');
-  if(cart.length===0){ body.innerHTML=`<div class="empty">Votre panier est vide.</div>`; foot.style.display='none'; }
-  else { body.innerHTML=cart.map(c=>{ const p=products.find(x=>x.id===c.id); return `<div class="cart-item"><img src="${p.img}"><div class="cart-item-info"><b>${p.name}</b><small>${money(p.price)}</small><div class="qty"><button onclick="changeQty(${c.id},-1)">-</button><span>${c.qty}</span><button onclick="changeQty(${c.id},1)">+</button><button class="remove" onclick="changeQty(${c.id},-${c.qty})">Supprimer</button></div></div></div>`; }).join(''); document.getElementById('cartTotal').textContent=money(prodTotal); foot.style.display='grid'; }
-  document.getElementById('formResume').textContent=count+` produit(s)`; updateDelivery();
-}
-function openCart(){ document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
-function closeCart(){ document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); document.body.style.overflow=''; }
-function openForm(){ if(cart.length===0) return; updateCart(); closeCart(); setTimeout(()=>{ document.getElementById('formDrawer').classList.add('open'); document.getElementById('formOverlay').classList.add('open'); updateDelivery(); },150); }
-function closeForm(){ document.getElementById('formDrawer').classList.remove('open'); document.getElementById('formOverlay').classList.remove('open'); }
-function submitOrder(e){
-  e.preventDefault(); const nom=document.getElementById('fNom').value.trim(); const prenom=document.getElementById('fPrenom').value.trim(); const tel=document.getElementById('fTel').value.trim(); const ville=document.getElementById('fVille').value; const adresse=document.getElementById('fAdresse').value.trim(); const note=document.getElementById('fNote').value.trim();
-  if(!nom||!prenom||!tel||!ville||!adresse){ showToast('Remplir tous les champs *'); return; }
-  const fee=getDeliveryFee(); let prodTotal=0; let details=''; cart.forEach(c=>{ const p=products.find(x=>x.id===c.id); prodTotal+=p.price*c.qty; details+=`%0A- ${p.name} x${c.qty} = ${p.price*c.qty} DH`; });
-  const total=prodTotal+fee;
-  let msg=`🛒 *NOUVELLE COMMANDE - EL KENZ STORE*%0A%0A👤 *Client:* ${prenom} ${nom}%0A📞 *Tél:* ${tel}%0A🏙️ *Ville:* ${ville}%0A📍 *Adresse:* ${adresse}`;
-  if(note) msg+=`%0A📝 *Note:* ${note}`;
-  msg+=`%0A%0A📦 *Produits:*${details}%0A%0A💰 Produits: ${prodTotal} DH%0A🚚 Livraison (${ville}): ${fee} DH%0A%0A✅ *TOTAL À PAYER: ${total} DH*%0A💳 Paiement à la livraison`;
-  window.open(`https://wa.me/212602017794?text=${msg}`,'_blank'); cart=[]; updateCart(); closeForm(); showToast('Commande envoyée!');
-}
-function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),3000)}
-document.getElementById('categories').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(!b)return;activeCategory=b.dataset.category;document.querySelectorAll('.cat').forEach(x=>x.classList.toggle('selected',x===b));renderProducts()});
-document.querySelector('.filters').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;activeFilter=b.dataset.filter;document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active',x===b));renderProducts()});
-document.getElementById('searchForm').addEventListener('submit',e=>{e.preventDefault();searchTerm=document.getElementById('searchInput').value;renderProducts()});
-document.getElementById('searchInput').addEventListener('input',e=>{searchTerm=e.target.value;renderProducts()});
-document.getElementById('lang').addEventListener('click',()=>{currentLang=currentLang==='fr'?'ar':'fr';document.documentElement.dir=currentLang==='fr'?'ltr':'rtl';document.getElementById('lang').textContent=currentLang==='fr'?'FR | العربية':'العربية | FR';renderProducts()});
-document.getElementById('year').textContent=new Date().getFullYear(); renderProducts(); updateCart();
-</script></body></html>
+const CATS=[["🔧","الأدوات"],["🚿","السباكة"],["💡","الكهرباء"],["🎨","الدهانات"],["🌿","الحديقة"],["🏷️","عروض"]];
+let activeCat="الكل"; let activeFilter="الكل"; let cart=JSON.parse(localStorage.getItem("bricoma_cart")||"[]"); let currentPD=null;
+const $=s=>document.querySelector(s);
+function renderCats(){const c=$("#categories");c.innerHTML=`<div class="cat ${activeCat==="الكل"?"selected":""}" onclick="setCat('الكل')"><span class="emoji">🛒</span><strong>الكل</strong></div>`+CATS.map(([e,n])=>`<div class="cat ${activeCat===n?"selected":""}" onclick="setCat('${n}')"><span class="emoji">${e}</span><strong>${n}</strong></div>`).join("");}
+function renderFilters(){const f=$("#filters");const all=["الكل","جديد","عروض"];f.innerHTML=all.map(x=>`<button class="filter ${activeFilter===x?"active":""}" onclick="setFilter('${x}')">${x}</button>`).join("");}
+function setCat(c){activeCat=c;renderCats();renderProducts();} function setFilter(f){activeFilter=f;renderFilters();renderProducts();}
+function getFiltered(){let list=[...PRODUCTS];const q=$("#searchInput").value.trim().toLowerCase();if(activeCat!=="الكل"){list=list.filter(p=>activeCat==="عروض"?p.promo||p.old>0:p.cat===activeCat);}if(activeFilter==="جديد")list=list.filter(p=>p.tag==="جديد");if(activeFilter==="عروض")list=list.filter(p=>p.promo||p.old>0);if(q)list=list.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));return list;}
+function renderProducts(){const g=$("#productsGrid");const list=getFiltered();if(!list.length){g.innerHTML=`<div class="empty">لا توجد منتجات مطابقة</div>`;return;}g.innerHTML=list.map(p=>`<div class="product" onclick="openPD(${p.id})"><span class="tag ${p.promo?'promo':''}" style="${p.tag||p.promo?'':'display:none'}">${p.tag||'عرض'}</span><img src="${p.img}" loading="lazy" alt="${p.name}"><div class="pbody"><h4 class="pname">${p.name}</h4><div class="desc">${p.desc}</div><div class="price-row"><span class="price">${p.price} د.م</span>${p.old?`<span class="old">${p.old} د.م</span>`:""}</div><div class="pfoot"><small style="color:var(--muted)">متوفر ✓</small><button class="add" onclick="event.stopPropagation();addToCart(${p.id})">+</button></div></div></div>`).join("");}
+function addToCart(id){const p=PRODUCTS.find(x=>x.id===id);const f=cart.find(x=>x.id===id);if(f)f.qty++;else cart.push({id,qty:1});saveCart();toast(`تمت إضافة ${p.name} للسلة`);}
+function saveCart(){localStorage.setItem("bricoma_cart",JSON.stringify(cart));updateCartCount();renderCart();}
+function updateCartCount(){const n=cart.reduce((s,i)=>s+i.qty,0);$("#cartCount").textContent=n;$("#cartCount2").textContent=n;}
+function renderCart(){const b=$("#cartBody");if(!cart.length){b.innerHTML=`<div class="empty">السلة فارغة - أضف بعض المنتجات 🛒</div>`;$("#cartTotal").textContent="0 د.م";return;}let total=0;b.innerHTML=cart.map(ci=>{const p=PRODUCTS.find(x=>x.id===ci.id);const sub=p.price*ci.qty;total+=sub;return `<div class="cart-item"><img src="${p.img}"><div class="cart-item-info"><b>${p.name}</b><small>${p.price} د.م × ${ci.qty} = ${sub} د.م</small><div class="qty"><button onclick="changeQty(${ci.id},-1)">-</button><span>${ci.qty}</span><button onclick="changeQty(${ci.id},1)">+</button><button class="remove" onclick="removeItem(${ci.id})">حذف</button></div></div></div>`}).join("");$("#cartTotal").textContent=total+" د.م";}
+function changeQty(id,d){const it=cart.find(x=>x.id===id);if(!it)return;it.qty+=d;if(it.qty<=0)cart=cart.filter(x=>x.id!==id);saveCart();}
+function removeItem(id){cart=cart.filter(x=>x.id!==id);saveCart();toast("تم الحذف");}
+function openCart(){$("#cartOverlay").classList.add("open");$("#cartDrawer").classList.add("open");renderCart();} function closeCart(){$("#cartOverlay").classList.remove("open");$("#cartDrawer").classList.remove("open");}
+function openOrderForm(){if(!cart.length){toast("السلة فارغة");return;}closeCart();$("#formOverlay").classList.add("open");$("#formDrawer").classList.add("open");} function closeOrderForm(){$("#formOverlay").classList.remove("open");$("#formDrawer").classList.remove("open");}
+function sendWhatsAppOrder(){const name=$("#fName").value.trim(),phone=$("#fPhone").value.trim(),city=$("#fCity").value,addr=$("#fAddr").value.trim(),note=$("#fNote").value.trim();if(!name||!phone||!city){toast("املأ الاسم والهاتف والمدينة");return;}let total=0;let lines=cart.map(ci=>{const p=PRODUCTS.find(x=>x.id===ci.id);const sub=p.price*ci.qty;total+=sub;return `- ${p.name} × ${ci.qty} = ${sub} د.م`;}).join("%0A");const msg=`🛒 طلب جديد من BRICOMA.ma%0A%0A${lines}%0A%0A💰 المجموع: ${total} د.م%0A%0A👤 ${name}%0A📞 ${phone}%0A🏙️ ${city}%0A📍 ${addr||"-"}%0A📝 ${note||"-"}%0A%0Aالمرجو تأكيد الطلب وشكرا!`;window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`,"_blank");toast("تم فتح واتساب - أرسل الرسالة");cart=[];saveCart();closeOrderForm();}
+function openPD(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;currentPD=p;$("#pdMain").src=p.imgs[0]||p.img;$("#pdThumbs").innerHTML=(p.imgs||[p.img]).map((im,i)=>`<img src="${im}" class="pd-thumb ${i===0?'active':''}" onclick="setPDImg('${im}',this)">`).join("");$("#pdName").textContent=p.name;$("#pdTitle").textContent=p.name;$("#pdPrice").innerHTML=`${p.price} د.م ${p.old?`<span class="old">${p.old} د.م</span>`:""}`;$("#pdDesc").textContent=p.long;$("#pdSpecs").innerHTML=p.specs.map(([k,v])=>`<div class="spec-row"><b>${k}</b><span>${v}</span></div>`).join("");$("#pdOverlay").classList.add("open");$("#pdDrawer").classList.add("open");}
+function setPDImg(src,el){$("#pdMain").src=src;document.querySelectorAll(".pd-thumb").forEach(t=>t.classList.remove("active"));el.classList.add("active");}
+function closePD(){$("#pdOverlay").classList.remove("open");$("#pdDrawer").classList.remove("open");}
+function addCurrentToCart(){if(currentPD)addToCart(currentPD.id);} function orderCurrentViaWA(){if(currentPD){cart=[{id:currentPD.id,qty:1}];saveCart();openOrderForm();}}
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600);}
+$("#searchInput").addEventListener("input",renderProducts);
+renderCats();renderFilters();renderProducts();updateCartCount();renderCart();
+</script>
+</body>
+</html>
