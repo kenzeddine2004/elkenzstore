@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://elkenzstore.netlify.app/sitemap.xml
