@@ -158,9 +158,7 @@ const defaultProducts=[
     ],
     "popular": true,
     "stock": 6
-  }
-];
-];
+  },
 // ✅ 72 مدينة مرتبة A → Z بلا تكرار
 const cities72=["Agadir","Ahfir","Ait Melloul","Aït Iaaza","Akka","Al Hoceima","Anzi","Assa","Autre","Azrou","Ben Guerir","Beni Mellal","Berkane","Berrechid","Biougra","Bouarfa","Bouizakarne","Boujdour","Boulemane","Boumalne Dades","Casablanca","Chefchaouen","Dakhla","Dar Gueddari","El Jadida","Errachidia","Essaouira","Fam El Hisn","Fès","Figuig","Fnideq","Foum Zguid","Goulmima","Guelmim","Guercif","Had Kourt","Ifrane","Igherm","Inezgane","Jerada","Jorf El Melha","Kalaat Mghouna","Kénitra","Khénifra","Khouribga","Ksar El Kebir","Laayoune","Lakhsas","Lalla Mimouna","Larache","Mdiq","Mechra Bel Ksiri","Meknès","Midelt","Missour","Mohammedia","Nador","Ouarzazate","Ouazzane","Ouezzane","Oujda","Oulad Berhil","Oulad Teima","Outat El Haj","Rabat","Rich","Safi","Saïdia","Salé","Settat","Sidi Ifni","Sidi Kacem","Sidi Slimane","Smara","Souk El Arbaa","Tafraout","Tanger","Tan-Tan","Taounate","Taourirt","Tarfaya","Taroudant","Tata","Taza","Témara","Tétouan","Tinghir","Tiznit","Youssoufia","Zagora"].sort((a,b)=>a.localeCompare(b,'fr'));
 const deliveryFees = {}; cities72.forEach(c=>{if(["Casablanca","Mohammedia"].includes(c)) deliveryFees[c]=20; else if(["Rabat","Salé","Témara","Kénitra","Agadir","Inezgane","Ait Melloul"].includes(c)) deliveryFees[c]=25; else if(c==="Autre") deliveryFees[c]=50; else deliveryFees[c]=35;});
