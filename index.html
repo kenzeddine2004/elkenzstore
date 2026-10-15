@@ -6,10 +6,33 @@
 <meta property="og:url" content="https://elkenzstore.github.io/index.html">
 <meta property="og:title" content="EL KENZ STORE - Votre boutique en ligne">
 <meta property="og:description" content="Livraison partout au Maroc - Meilleur prix">
-<meta property="og:image" content="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800">
+<meta property="og:image" content="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800">
 <meta property="og:image:width" content="800">
 <meta property="og:image:height" content="600">
 <meta name="twitter:card" content="summary_large_image">
+  <script>
+// كيبدل الصورة على حساب المنتوج اللي فالرابط?product=7
+(function(){
+  var params = new URLSearchParams(location.search);
+  var pid = params.get('product');
+  if(!pid) return;
+  // هادو المنتوجات ديالك - تقدر تزيدهم
+  var prods = {
+    '1': 'https://images.unsplash.com/photo-1593349480506-8433634c96b3?w=800',
+    '2': 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
+    '7': 'https://images.unsplash.com/photo-1527864554321-6a9f3a2c5b8a?w=800',
+    '8': 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800'
+  };
+  // إلا عندك SOURIS GAMING ولا produit آخر، زيد الصورة ديالو هنا
+  var img = prods[pid];
+  if(img){
+    var m = document.querySelector('meta[property="og:image"]');
+    if(m) m.content = img;
+    var t = document.querySelector('meta[property="og:title"]');
+    if(t) t.content = 'Produit ' + pid + ' - EL KENZ STORE';
+  }
+})();
+</script>
 <title>EL KENZ STORE - Complet</title>
 <style>
 :root{--ink:#111820;--gold:#e8b84e;--gold2:#ffd477;--muted:#69717c;--line:#e7e9ed}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,sans-serif;color:var(--ink);background:#fff}button{cursor:pointer}.wrap{width:min(1180px,92%);margin:auto}.topbar{background:var(--ink);color:#fff;font-size:12px}.head{padding:17px 0;border-bottom:1px solid var(--line)}.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:950;font-size:26px}.logo small{display:block;color:#c18d1d;font-size:10px;letter-spacing:5px;text-align:center;margin-top:-5px}.search{display:flex;flex:1;max-width:550px;border:1px solid #dce0e5;border-radius:9px;overflow:hidden}.search input{border:0;outline:0;padding:13px 15px;flex:1}.search button{border:0;background:var(--ink);color:white;padding:0 17px}.head-actions{display:flex;gap:14px;margin-left:auto}.iconbtn{background:white;border:0;color:var(--ink);font-size:13px;display:grid;gap:2px;justify-items:center}.iconbtn b{font-size:22px}.nav{background:var(--ink);color:white;position:sticky;top:0;z-index:10}.nav a{color:white;text-decoration:none;font-size:13px;white-space:nowrap;padding:15px 0;display:inline-block;border-bottom:2px solid transparent}.nav a.active{color:var(--gold);border-bottom:2px solid var(--gold)}.hero{background:radial-gradient(ellipse at 70% 50%,#30353a 0%,#101418 50%,#050708 100%);color:white;overflow:hidden}.hero-inner{min-height:360px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:20px;padding:36px 0}.eyebrow{color:var(--gold);letter-spacing:4px;font-size:13px;font-weight:700}.hero h1{font-size:clamp(32px,4vw,49px);line-height:1.1;margin:14px 0}.hero h1 span{color:var(--gold2)}.primary{background:linear-gradient(90deg,var(--gold),var(--gold2));border:0;border-radius:99px;padding:13px 23px;font-weight:800;color:#15191d}.hero-image{width:100%;height:310px;object-fit:cover;border-radius:16px}.section{padding:40px 0}.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.cat{border:1px solid #edf0f2;background:#f8f9fa;border-radius:12px;text-align:center;padding:17px 8px}.cat.selected{border-color:var(--gold);background:#fff9eb}.cat.emoji{font-size:30px;display:block;margin-bottom:8px}.cat strong{font-size:12px}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid var(--line);border-radius:99px;background:white;padding:8px 13px;color:#343a40;font-size:12px}.filter.active{background:var(--ink);color:white}.products{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.product{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:white;position:relative;cursor:pointer;transition:.2s}.product:hover{transform:translateY(-3px);box-shadow:0 10px 25px #0001}.product img{width:100%;height:190px;object-fit:cover;background:#f2f3f5}.tag{position:absolute;top:11px;left:11px;background:#0e9c51;color:white;font-size:10px;font-weight:800;padding:5px 8px;border-radius:5px}.tag.promo{background:#ed8c19}.tag.new{background:#007bff}.pbody{padding:13px}.pname{font-size:14px;font-weight:750;margin:0 0 8px}.desc{font-size:11px;color:var(--muted);min-height:30px}.price-row{display:flex;align-items:center;gap:8px;margin:10px 0}.price{font-weight:850;font-size:16px}.old{font-size:11px;color:#8d949c;text-decoration:line-through}.pfoot{display:flex;align-items:center;justify-content:space-between;margin-top:10px}.add{background:var(--ink);color:white;border:0;border-radius:8px;width:38px;height:36px;font-size:20px}.share{border:1px solid var(--line);background:white;border-radius:8px;width:36px;height:36px;font-size:16px}.stock-badge{font-size:11px;font-weight:700;padding:4px 8px;border-radius:99px;display:inline-block;margin:6px 0}.stock-high{background:#e6f7ee;color:#0a7d3e}.stock-low{background:#fff2d6;color:#b46a00}.stock-out{background:#ffe0e0;color:#a00}.footer{background:#101820;color:#f5f6f7;padding:35px 0 20px;margin-top:28px}.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}.footer p,.footer a{font-size:13px;color:#c1c8ce;line-height:1.8;text-decoration:none}.footline{border-top:1px solid #343b42;margin-top:25px;padding-top:17px;font-size:11px;color:#aab2b9}.whatsapp{position:fixed;bottom:18px;right:18px;z-index:5;background:#12a85b;color:white;border-radius:99px;padding:13px 18px;font-weight:800;text-decoration:none}.toast{position:fixed;bottom:76px;right:20px;background:#101820;color:white;padding:12px 17px;border-radius:9px;opacity:0;transform:translateY(8px);transition:.2s;z-index:50;font-size:13px;max-width:85%}.toast.show{opacity:1;transform:translateY(0)}.cart-count{display:inline-grid;place-items:center;min-width:19px;height:19px;border-radius:50%;background:var(--gold);color:#111;font-size:11px;margin-left:3px}.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px}
