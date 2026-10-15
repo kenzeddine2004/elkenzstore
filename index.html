@@ -38,7 +38,7 @@
 </div></div></div>
 
 <div class="mp-overlay" id="mpOverlay"><div class="mp-panel"><div class="mp-head"><span>📦 Ajouter un produit</span><button onclick="closeMarketplaceForm()" style="border:0;background:none;font-size:22px">×</button></div><div class="mp-body">
-<div class="mp-upload" id="mpUploadBox"><div id="mpUploadText">📸 Cliquez pour choisir une photo<br><small>JPG, PNG - Max 2MB</small></div><img id="mpPreview"><input type="file" id="mpFile" accept="image/*" onchange="handleImageUpload(event)"></div>
+<div class="mp-upload" id="mpUploadBox"><div id="mpUploadText">📸 Cliquez pour choisir jusqu'a 5 photos<br><small>JPG, PNG - Max 2MB - Ctrl+Click</small></div><div id="mpPreview" style="display:none;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px"></div><input type="file" id="mpFile" accept="image/*" multiple onchange="handleImageUpload(event)"></div>
 <div class="mp-field"><label>Nom du produit *</label><input type="text" id="mpName"></div>
 <div class="mp-row"><div class="mp-field"><label>Prix actuel (DH) *</label><input type="number" id="mpPrice"></div><div class="mp-field"><label>Ancien prix (si promo)</label><input type="number" id="mpOld"></div></div>
 <div class="mp-row"><div class="mp-field"><label>Stock *</label><div style="display:flex;gap:6px"><button type="button" class="btn-small" onclick="mpChangeStock(-1)">-</button><input type="number" id="mpStock" value="10" style="flex:1;text-align:center"><button type="button" class="btn-small" onclick="mpChangeStock(1)">+</button></div></div><div class="mp-field"><label>📂 Catégorie *</label><select id="mpCat"><option value="tech">📱 Électronique</option><option value="audio">🎧 Audio</option><option value="home">🏠 Maison</option><option value="style">⌚ Mode</option><option value="gaming">🎮 Gaming</option></select></div></div>
@@ -217,7 +217,34 @@ function resetProducts(){if(!confirm('Reset?'))return;localStorage.removeItem('e
 function openMarketplaceForm(){document.getElementById('mpName').value='';document.getElementById('mpPrice').value='';document.getElementById('mpOld').value='';document.getElementById('mpStock').value='10';document.getElementById('mpDesc').value='';document.getElementById('mpLong').value='';document.getElementById('mpImgUrl').value='';mpImageData='';document.getElementById('mpPreview').style.display='none';document.getElementById('mpUploadText').style.display='block';document.getElementById('mpTag').value='popular';document.getElementById('mpOverlay').classList.add('open');}
 function closeMarketplaceForm(){document.getElementById('mpOverlay').classList.remove('open');}
 function mpChangeStock(d){let v=parseInt(document.getElementById('mpStock').value)||0;v=Math.max(0,v+d);document.getElementById('mpStock').value=v;}
-function handleImageUpload(e){const file=e.target.files[0];if(!file)return;if(file.size>2*1024*1024){alert('Image trop grande! Max 2MB');return;}const reader=new FileReader();reader.onload=function(ev){mpImageData=ev.target.result;const prev=document.getElementById('mpPreview');prev.src=mpImageData;prev.style.display='block';document.getElementById('mpUploadText').style.display='none';};reader.readAsDataURL(file);}
+function handleImageUpload(e){
+  const files=Array.from(e.target.files).slice(0,5);
+  if(!files.length)return;
+  mpImagesData=[];
+  const box=document.getElementById('mpPreview');
+  box.innerHTML='';
+  box.style.display='flex';
+  files.forEach(file=>{
+    if(file.size>2*1024*1024){alert(file.name+' trop grand');return;}
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      mpImagesData.push(ev.target.result);
+      mpImageData=mpImagesData[0];
+      const wrap=document.createElement('div');
+      wrap.style='position:relative;width:80px;height:80px';
+      const img=document.createElement('img');
+      img.src=ev.target.result;
+      img.style='width:80px;height:80px;object-fit:cover;border-radius:8px;border:2px solid #e8b84e';
+      const del=document.createElement('span');
+      del.textContent='x';
+      del.style='position:absolute;top:-5px;right:-5px;background:red;color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px';
+      del.onclick=()=>{wrap.remove();mpImagesData=mpImagesData.filter(s=>s!==ev.target.result);if(mpImagesData.length===0){box.style.display='none';document.getElementById('mpUploadText').style.display='block';}};
+      wrap.appendChild(img);wrap.appendChild(del);box.appendChild(wrap);
+      document.getElementById('mpUploadText').style.display='none';
+    };
+    reader.readAsDataURL(file);
+  });
+}
 function publishMarketplaceProduct(){const name=document.getElementById('mpName').value.trim();const price=parseInt(document.getElementById('mpPrice').value)||0;const oldPrice=parseInt(document.getElementById('mpOld').value)||0;const stock=parseInt(document.getElementById('mpStock').value)||0;const cat=document.getElementById('mpCat').value;const tag=document.getElementById('mpTag').value;const popular=document.getElementById('mpPopular').value==='true';const desc=document.getElementById('mpDesc').value.trim();const longDesc=document.getElementById('mpLong').value.trim();let imgUrl=document.getElementById('mpImgUrl').value.trim();if(mpImageData) imgUrl=mpImageData;if(!name||!price){alert('Nom et prix obligatoires!');return;}if(!imgUrl){alert('Ajoutez une photo!');return;}const newId=products.length?Math.max(...products.map(p=>p.id))+1:1;const newP={id:newId,name:name,ar:name,category:cat,price:price,old:tag==='promo'?oldPrice:0,tag:tag,desc:desc||'Nouveau produit',longDesc:longDesc||desc||'Description',arDesc:desc,img:imgUrl,images:[imgUrl],popular:popular,stock:stock};products.unshift(newP);saveToLocal();renderProducts();renderAdminList();closeMarketplaceForm();showToast('✅ Produit publié!');}
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),4000)}
 const translations={fr:{ship:"🚚 Livraison partout au Maroc",pay:"💳 Paiement à la livraison",support:"🎧 Support 7j/7",cart:"Panier",home:"Accueil",prod:"Nos produits",promo:"Promotions",about:"À propos",contact:"Contact",heroTitle:"Votre boutique en ligne au <span>meilleur prix!</span>",heroSub:"Électronique • Accessoires • Maison • Mode • Et bien plus...",heroBtn:"Découvrir nos produits →",popTitle:"Nos produits populaires",all:"Tous",pop:"Populaires",prom:"Promotions",promoBanner:"🔥 PROMOTIONS EXCLUSIVES - Jusqu'à -50% 🔥",promoTitle:"Nos Promotions",aboutTitle:"À propos de EL KENZ STORE",aboutBox:`<p><b>EL KENZ STORE</b> est votre boutique en ligne de confiance au Maroc.</p><p>🎯 <b>Notre mission:</b> Vous offrir les meilleurs produits au meilleur prix.</p><p>🚚 <b>Livraison:</b> Partout au Maroc en 24-48h - 87 villes triées A→Z</p><p>💳 <b>Paiement:</b> À la livraison</p><p>🎧 <b>Support:</b> 7j/7 via WhatsApp: 0602 01 77 94</p>`,footDesc:"Votre prochaine bonne trouvaille commence ici.",footLinks:"Liens utiles",flProd:"Nos produits",flPromo:"Promotions",footContact:"Contactez-nous"},ar:{ship:"🚚 توصيل في جميع أنحاء المغرب",pay:"💳 الدفع عند الاستلام",support:"🎧 دعم 7/7",cart:"السلة",home:"الرئيسية",prod:"منتجاتنا",promo:"العروض",about:"معلومات عنا",contact:"اتصل بنا",heroTitle:"متجرك الإلكتروني بأفضل <span>الأسعار!</span>",heroSub:"إلكترونيات • إكسسوارات • منزل • موضة • وأكثر...",heroBtn:"← اكتشف منتجاتنا",popTitle:"منتجاتنا الشعبية",all:"الكل",pop:"شعبي",prom:"عروض",promoBanner:"🔥 عروض حصرية - حتى -50% 🔥",promoTitle:"عروضنا",aboutTitle:"حول متجر الكنز",aboutBox:`<p><b>EL KENZ STORE</b> هو متجرك الموثوق عبر الإنترنت في المغرب.</p><p>🎯 <b>مهمتنا:</b> تقديم أفضل المنتجات بأفضل الأسعار.</p><p>🚚 <b>التوصيل:</b> في جميع أنحاء المغرب 24-48 ساعة - 87 مدينة مرتبة A→Z</p><p>💳 <b>الدفع:</b> عند الاستلام بأمان</p><p>🎧 <b>الدعم:</b> 7/7 عبر واتساب: 0602017794</p>`,footDesc:"اكتشافك القادم الرائع يبدأ هنا.",footLinks:"روابط مفيدة",flProd:"منتجاتنا",flPromo:"العروض",footContact:"اتصل بنا"}};
