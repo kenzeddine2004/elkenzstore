@@ -253,35 +253,84 @@ function resetProducts(){if(!confirm('Reset?'))return;localStorage.removeItem('e
 function openMarketplaceForm(){document.getElementById('mpName').value='';document.getElementById('mpPrice').value='';document.getElementById('mpOld').value='';document.getElementById('mpStock').value='10';document.getElementById('mpDesc').value='';document.getElementById('mpLong').value='';document.getElementById('mpImgUrl').value='';mpImageData='';document.getElementById('mpPreview').style.display='none';document.getElementById('mpUploadText').style.display='block';document.getElementById('mpTag').value='popular';document.getElementById('mpOverlay').classList.add('open');}
 function closeMarketplaceForm(){document.getElementById('mpOverlay').classList.remove('open');}
 function mpChangeStock(d){let v=parseInt(document.getElementById('mpStock').value)||0;v=Math.max(0,v+d);document.getElementById('mpStock').value=v;}
+let mpImagesData = [];
 function handleImageUpload(e){
-  const files=Array.from(e.target.files).slice(0,5);
-  if(!files.length)return;
-  mpImagesData=[];
-  const box=document.getElementById('mpPreview');
-  box.innerHTML='';
-  box.style.display='flex';
+  const files = Array.from(e.target.files).slice(0,5);
+  if(!files.length) return;
+  const box = document.getElementById('mpPreview');
+  box.style.display = 'flex';
+  box.style.flexWrap = 'wrap';
+  box.style.gap = '8px';
+  box.style.justifyContent = 'center';
+  // ما كنممسحوش القديم - كنزيدو عليه!
+  if(mpImagesData.length + files.length > 5){
+    alert('Max 5 photos! عندك دابا ' + mpImagesData.length);
+    return;
+  }
   files.forEach(file=>{
-    if(file.size>2*1024*1024){alert(file.name+' trop grand');return;}
-    const reader=new FileReader();
-    reader.onload=ev=>{
+    if(file.size>2*1024*1024){ alert(file.name+' كبير بزاف'); return; }
+    const reader = new FileReader();
+    reader.onload = ev=>{
       mpImagesData.push(ev.target.result);
-      mpImageData=mpImagesData[0];
-      const wrap=document.createElement('div');
-      wrap.style='position:relative;width:80px;height:80px';
-      const img=document.createElement('img');
-      img.src=ev.target.result;
-      img.style='width:80px;height:80px;object-fit:cover;border-radius:8px;border:2px solid #e8b84e';
-      const del=document.createElement('span');
-      del.textContent='x';
-      del.style='position:absolute;top:-5px;right:-5px;background:red;color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px';
-      del.onclick=()=>{wrap.remove();mpImagesData=mpImagesData.filter(s=>s!==ev.target.result);if(mpImagesData.length===0){box.style.display='none';document.getElementById('mpUploadText').style.display='block';}};
-      wrap.appendChild(img);wrap.appendChild(del);box.appendChild(wrap);
-      document.getElementById('mpUploadText').style.display='none';
+      mpImageData = mpImagesData[0];
+      const wrap = document.createElement('div');
+      wrap.style = 'position:relative;width:80px;height:80px;display:inline-block';
+      const img = document.createElement('img');
+      img.src = ev.target.result;
+      img.style = 'width:80px;height:80px;object-fit:cover;border-radius:8px;border:2px solid #e8b84e';
+      const del = document.createElement('span');
+      del.textContent = 'x';
+      del.style = 'position:absolute;top:-5px;right:-5px;background:red;color:white;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px';
+      del.onclick = ()=>{
+        wrap.remove();
+        mpImagesData = mpImagesData.filter(s=>s!==ev.target.result);
+        mpImageData = mpImagesData[0]||'';
+        if(mpImagesData.length===0){
+          box.style.display='none';
+          document.getElementById('mpUploadText').style.display='block';
+        }
+      };
+      wrap.appendChild(img);
+      wrap.appendChild(del);
+      box.appendChild(wrap);
+      document.getElementById('mpUploadText').style.display = 'none';
     };
     reader.readAsDataURL(file);
   });
+  e.target.value = ''; // باش تقدر تختار نفس الملف مرة أخرى
 }
-function publishMarketplaceProduct(){const name=document.getElementById('mpName').value.trim();const price=parseInt(document.getElementById('mpPrice').value)||0;const oldPrice=parseInt(document.getElementById('mpOld').value)||0;const stock=parseInt(document.getElementById('mpStock').value)||0;const cat=document.getElementById('mpCat').value;const tag=document.getElementById('mpTag').value;const popular=document.getElementById('mpPopular').value==='true';const desc=document.getElementById('mpDesc').value.trim();const longDesc=document.getElementById('mpLong').value.trim();let imgUrl=document.getElementById('mpImgUrl').value.trim();if(mpImageData) imgUrl=mpImageData;if(!name||!price){alert('Nom et prix obligatoires!');return;}if(!imgUrl){alert('Ajoutez une photo!');return;}const newId=products.length?Math.max(...products.map(p=>p.id))+1:1;const newP={id:newId,name:name,ar:name,category:cat,price:price,old:tag==='promo'?oldPrice:0,tag:tag,desc:desc||'Nouveau produit',longDesc:longDesc||desc||'Description',arDesc:desc,img:imgUrl,images:[imgUrl],popular:popular,stock:stock};products.unshift(newP);saveToLocal();renderProducts();renderAdminList();closeMarketplaceForm();showToast('✅ Produit publié!');}
+function publishMarketplaceProduct(){
+  const name=document.getElementById('mpName').value.trim();
+  const price=parseInt(document.getElementById('mpPrice').value)||0;
+  const oldPrice=parseInt(document.getElementById('mpOld').value)||0;
+  const stock=parseInt(document.getElementById('mpStock').value)||0;
+  const cat=document.getElementById('mpCat').value;
+  const tag=document.getElementById('mpTag').value;
+  const popular=document.getElementById('mpPopular').value==='true';
+  const desc=document.getElementById('mpDesc').value.trim();
+  const longDesc=document.getElementById('mpLong').value.trim();
+  let imgUrl=document.getElementById('mpImgUrl').value.trim();
+  let finalImages = [];
+  if(mpImagesData && mpImagesData.length>0){
+    finalImages = [...mpImagesData];
+    imgUrl = finalImages[0];
+  } else if(mpImageData){
+    imgUrl = mpImageData;
+    finalImages = [mpImageData];
+  } else if(imgUrl){
+    finalImages = [imgUrl];
+  }
+  if(!name||!price){alert('Nom et prix obligatoires!');return;}
+  if(!imgUrl || finalImages.length===0){alert('Ajoutez une photo!');return;}
+  const newId=products.length?Math.max(...products.map(p=>p.id))+1:1;
+  const newP={id:newId,name:name,ar:name,category:cat,price:price,old:tag==='promo'?oldPrice:0,tag:tag,desc:desc||'Nouveau produit',longDesc:longDesc||desc||'Description',arDesc:desc,img:finalImages[0],images:finalImages,popular:popular,stock:stock};
+  products.unshift(newP);
+  saveToLocal();
+  renderProducts();
+  renderAdminList();
+  closeMarketplaceForm();
+  showToast('✅ Produit publié avec '+finalImages.length+' photos!');
+}
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),4000)}
 const translations={fr:{ship:"🚚 Livraison partout au Maroc",pay:"💳 Paiement à la livraison",support:"🎧 Support 7j/7",cart:"Panier",home:"Accueil",prod:"Nos produits",promo:"Promotions",about:"À propos",contact:"Contact",heroTitle:"Votre boutique en ligne au <span>meilleur prix!</span>",heroSub:"Électronique • Accessoires • Maison • Mode • Et bien plus...",heroBtn:"Découvrir nos produits →",popTitle:"Nos produits populaires",all:"Tous",pop:"Populaires",prom:"Promotions",promoBanner:"🔥 PROMOTIONS EXCLUSIVES - Jusqu'à -50% 🔥",promoTitle:"Nos Promotions",aboutTitle:"À propos de EL KENZ STORE",aboutBox:`<p><b>EL KENZ STORE</b> est votre boutique en ligne de confiance au Maroc.</p><p>🎯 <b>Notre mission:</b> Vous offrir les meilleurs produits au meilleur prix.</p><p>🚚 <b>Livraison:</b> Partout au Maroc en 24-48h - 87 villes triées A→Z</p><p>💳 <b>Paiement:</b> À la livraison</p><p>🎧 <b>Support:</b> 7j/7 via WhatsApp: 0602 01 77 94</p>`,footDesc:"Votre prochaine bonne trouvaille commence ici.",footLinks:"Liens utiles",flProd:"Nos produits",flPromo:"Promotions",footContact:"Contactez-nous"},ar:{ship:"🚚 توصيل في جميع أنحاء المغرب",pay:"💳 الدفع عند الاستلام",support:"🎧 دعم 7/7",cart:"السلة",home:"الرئيسية",prod:"منتجاتنا",promo:"العروض",about:"معلومات عنا",contact:"اتصل بنا",heroTitle:"متجرك الإلكتروني بأفضل <span>الأسعار!</span>",heroSub:"إلكترونيات • إكسسوارات • منزل • موضة • وأكثر...",heroBtn:"← اكتشف منتجاتنا",popTitle:"منتجاتنا الشعبية",all:"الكل",pop:"شعبي",prom:"عروض",promoBanner:"🔥 عروض حصرية - حتى -50% 🔥",promoTitle:"عروضنا",aboutTitle:"حول متجر الكنز",aboutBox:`<p><b>EL KENZ STORE</b> هو متجرك الموثوق عبر الإنترنت في المغرب.</p><p>🎯 <b>مهمتنا:</b> تقديم أفضل المنتجات بأفضل الأسعار.</p><p>🚚 <b>التوصيل:</b> في جميع أنحاء المغرب 24-48 ساعة - 87 مدينة مرتبة A→Z</p><p>💳 <b>الدفع:</b> عند الاستلام بأمان</p><p>🎧 <b>الدعم:</b> 7/7 عبر واتساب: 0602017794</p>`,footDesc:"اكتشافك القادم الرائع يبدأ هنا.",footLinks:"روابط مفيدة",flProd:"منتجاتنا",flPromo:"العروض",footContact:"اتصل بنا"}};
 function applyLang(){const t=translations[currentLang];document.getElementById('tShip').textContent=t.ship;document.getElementById('tPay').textContent=t.pay;document.getElementById('tSupport').textContent=t.support;document.getElementById('tCart').textContent=t.cart;document.getElementById('nHome').textContent=t.home;document.getElementById('nProd').textContent=t.prod;document.getElementById('nPromo').textContent=t.promo;document.getElementById('nAbout').textContent=t.about;document.getElementById('nContact').textContent=t.contact;document.getElementById('heroTitle').innerHTML=t.heroTitle;document.getElementById('heroSub').textContent=t.heroSub;document.getElementById('heroBtn').textContent=t.heroBtn;document.getElementById('tPopTitle').textContent=t.popTitle;document.getElementById('fAll').textContent=t.all;document.getElementById('fPop').textContent=t.pop;document.getElementById('fPromo').textContent=t.prom;document.getElementById('promoBanner').textContent=t.promoBanner;document.getElementById('tPromoTitle').textContent=t.promoTitle;document.getElementById('aboutTitle').textContent=t.aboutTitle;document.getElementById('aboutBox').innerHTML=t.aboutBox;document.getElementById('footDesc').textContent=t.footDesc;document.getElementById('footLinks').textContent=t.footLinks;document.getElementById('flProd').textContent=t.flProd;document.getElementById('flPromo').textContent=t.flPromo;document.getElementById('footContact').textContent=t.footContact;renderProducts();}
